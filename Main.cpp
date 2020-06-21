@@ -5,7 +5,10 @@ void Main()
 {
 	// 背景を水色にする
 	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
-
+	// ウィンドウタイトルを指定
+	Window::SetTitle(U"Wide Putin");
+	// ウィンドウのフレームを非表示にする
+	Window::SetStyle(WindowStyle::Frameless);
 	// Wide Putin の音声ファイルを用意, 速度 1.0
 	const Audio audio(U"assets/putin.m4a");
 	audio.play();
@@ -26,15 +29,20 @@ void Main()
 
 		// プーチンの画像をマウスカーソルに追従させて描画する
 		putin.scaled(0.5).draw(Cursor::Pos());
-		if (SimpleGUI::Button(U"Play", Vec2(20, 20)))
+		// 再生中なら「Pause」ボタン
+		if (audio.isPlaying())
 		{
-			// 再生
-			audio.play();
+			if (SimpleGUI::Button(U"Pause", Vec2(20, 20), 120))
+			{
+				audio.pause();
+			}
 		}
-		if (SimpleGUI::Button(U"Pause", Vec2(20, 60)))
+		else // 停止中なら「Play」ボタン
 		{
-			// 一時停止
-			audio.pause();
+			if (SimpleGUI::Button(U"Play", Vec2(20, 20), 120))
+			{
+				audio.play();
+			}
 		}
 		if (SimpleGUI::Button(U"Reset", Vec2(464, 330)))
 		{
@@ -47,7 +55,11 @@ void Main()
 			// 再生スピードを設定 (0.1 - 2.0)
 			audio.setSpeed(speed);
 		}
-		
+		if (SimpleGUI::Button(U"Close", Vec2(680, 20)))
+		{
+			// 閉じる
+			System::Exit();
+		}
 		if (SimpleGUI::Button(U"Tweet", Vec2(20, 560)))
 		{
 			// text をつぶやくツイート投稿画面を開く
