@@ -10,14 +10,14 @@ void Main()
 	// ウィンドウのフレームを非表示にする
 	Window::SetStyle(WindowStyle::Frameless);
 	// Wide Putin の音声ファイルを用意, 速度 1.0
-	const Audio audio(U"assets/putin.m4a");
+	const Audio audio(Resource(U"assets/putin.m4a"));
 	audio.play();
 	double speed = 1.0;
 	// フォントを用意
 	const Font font(60, Typeface::Default, FontStyle::Italic);
 	const Font fontPos(30);
 	// プーチンのテクスチャを用意
-	const Texture putin(U"assets/putin.png");
+	const Texture putin(Resource(U"assets/putin.png"));
 	audio.setVolume(0.5);
 	const String text = U"Wide Putin https://github.com/yudete/wideputin";
 	while (System::Update())
@@ -32,19 +32,19 @@ void Main()
 		// 再生中なら「Pause」ボタン
 		if (audio.isPlaying())
 		{
-			if (SimpleGUI::Button(U"Pause", Vec2(20, 20), 120))
+			if (SimpleGUI::Button(U"一時停止", Vec2(20, 20), 120))
 			{
 				audio.pause();
 			}
 		}
 		else // 停止中なら「Play」ボタン
 		{
-			if (SimpleGUI::Button(U"Play", Vec2(20, 20), 120))
+			if (SimpleGUI::Button(U"再生", Vec2(20, 20), 120))
 			{
 				audio.play();
 			}
 		}
-		if (SimpleGUI::Button(U"Reset", Vec2(464, 330)))
+		if (SimpleGUI::Button(U"リセット", Vec2(464, 330)))
 		{
 			// 再生速度を 1.0 に変更, スライダーをリセット
 			speed = 1.0;
@@ -55,12 +55,12 @@ void Main()
 			// 再生スピードを設定 (0.1 - 2.0)
 			audio.setSpeed(speed);
 		}
-		if (SimpleGUI::Button(U"Close", Vec2(680, 20)))
+		if (SimpleGUI::Button(U"閉じる", Vec2(680, 20)))
 		{
 			// 閉じる
 			System::Exit();
 		}
-		if (SimpleGUI::Button(U"Tweet", Vec2(20, 560)))
+		if (SimpleGUI::Button(U"ツイート", Vec2(20, 560)))
 		{
 			// text をつぶやくツイート投稿画面を開く
 			Twitter::OpenTweetWindow(text);
