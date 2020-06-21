@@ -12,6 +12,7 @@ void Main()
 	// Wide Putin の音声ファイルを用意, 速度 1.0
 	const Audio audio(Resource(U"assets/putin.m4a"));
 	audio.play();
+	FFTResult fft;
 	double speed = 1.0;
 	// フォントを用意
 	const Font font(60, Typeface::Default, FontStyle::Italic);
@@ -26,7 +27,23 @@ void Main()
 		font(U"Wide Putin").drawAt(Scene::Center(), Palette::Black);
 		// 座標決め用
 		fontPos(U"x: {} y: {}"_fmt(Cursor::Pos().x, Cursor::Pos().y)).drawAt(Vec2(640, 580));
+		if (audio.isPlaying())
+		{
+			// FFT 解析
+			FFT::Analyze(fft, audio);
 
+			// 結果を可視化
+			for (auto i : step(800))
+			{
+				const double size = Pow(fft.buffer[i], 0.6f) * 1000;
+				RectF(Arg::bottomLeft(i, 480), 1, size).draw(HSV(240 - i));
+			}
+
+			// 周波数表示
+			// Rect(Cursor::Pos().x, 0, 1, Scene::Height()).draw();
+			// ClearPrint();
+			// Print << U"{} Hz"_fmt(Cursor::Pos().x * fft.resolution);
+		}
 		// プーチンの画像をマウスカーソルに追従させて描画する
 		putin.scaled(0.5).draw(Cursor::Pos());
 		// 再生中なら「Pause」ボタン
