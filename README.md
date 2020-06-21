@@ -1,3 +1,3 @@
 # wideputin
 
-From now, there's wide putin everywhere.
+Siv3D で色々遊ぼう２０２０大会
