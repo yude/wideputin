@@ -6,11 +6,11 @@ void Main()
 	// 背景を水色にする
 	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
 
-	// Wide Putin の音声ファイルを用意
+	// Wide Putin の音声ファイルを用意, 速度 1.0
 	const Audio audio(U"assets/putin.m4a");
 	audio.play();
 	double speed = 1.0;
-	// 大きさ 60 のフォントを用意
+	// フォントを用意
 	const Font font(60, Typeface::Default, FontStyle::Italic);
 	const Font fontPos(30);
 	// プーチンのテクスチャを用意
@@ -38,6 +38,7 @@ void Main()
 		}
 		if (SimpleGUI::Button(U"Reset", Vec2(464, 330)))
 		{
+			// 再生速度を 1.0 に変更, スライダーをリセット
 			speed = 1.0;
 			audio.setSpeed(1.0);
 		}
