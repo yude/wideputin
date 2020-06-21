@@ -16,6 +16,7 @@ void Main()
 	// プーチンのテクスチャを用意
 	const Texture putin(U"assets/putin.png");
 	audio.setVolume(0.5);
+	const String text = U"Wide Putin https://github.com/yudete/wideputin";
 	while (System::Update())
 	{
 		// テキストを画面の中心に描く
@@ -25,12 +26,12 @@ void Main()
 
 		// プーチンの画像をマウスカーソルに追従させて描画する
 		putin.scaled(0.5).draw(Cursor::Pos());
-		if (SimpleGUI::Button(U"▶", Vec2(20, 20)))
+		if (SimpleGUI::Button(U"Play", Vec2(20, 20)))
 		{
 			// 再生
 			audio.play();
 		}
-		if (SimpleGUI::Button(U"⏸", Vec2(20, 60)))
+		if (SimpleGUI::Button(U"Pause", Vec2(20, 60)))
 		{
 			// 一時停止
 			audio.pause();
@@ -44,5 +45,11 @@ void Main()
 		{
 			audio.setSpeed(1.0);
 		}
+		if (SimpleGUI::Button(U"Tweet", Vec2(20, 560)))
+		{
+			// text をつぶやくツイート投稿画面を開く
+			Twitter::OpenTweetWindow(text);
+		}
+
 	}
 }
