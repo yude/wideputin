@@ -75,3 +75,5 @@ Resource(engine/soundfont/GMGSx.sf2.zstdcmp)
 	MYIDENTIFIER_1 FILE "assets/a b c.txt"
 	MYIDENTIFIER_2 FILE "level 1/map.dat"
 */
+Resource(assets/putin.png)
+Resource(assets/putin.m4a)
