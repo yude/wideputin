@@ -36,15 +36,17 @@ void Main()
 			// 一時停止
 			audio.pause();
 		}
+		if (SimpleGUI::Button(U"Reset", Vec2(464, 330)))
+		{
+			speed = 1.0;
+			audio.setSpeed(1.0);
+		}
 		if (SimpleGUI::Slider(U"{:.2f}"_fmt(speed), speed, 0.1, 2.0, Vec2(256,330)))
 		{
 			// 再生スピードを設定 (0.1 - 2.0)
 			audio.setSpeed(speed);
 		}
-		if (SimpleGUI::Button(U"Reset", Vec2(464, 330)))
-		{
-			audio.setSpeed(1.0);
-		}
+		
 		if (SimpleGUI::Button(U"Tweet", Vec2(20, 560)))
 		{
 			// text をつぶやくツイート投稿画面を開く
